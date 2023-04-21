@@ -1,4 +1,7 @@
 import React from "react";
+import Link from "next/link";
+import { termContent2, termLinks2 } from "@/contents";
+import { TermLink } from "@/contents/termsLinks";
 
 export default function TermsAndCond() {
   return (
@@ -9,7 +12,6 @@ export default function TermsAndCond() {
 
       <section className="py-8">
         <div className="h-auto lg:pr-20 lg:float-left lg:w-1/2 xl:w-2/3">
-          <h2 className="text-xl font-bold mb-4">Introduction:</h2>
           <p>
             Welcome to Truce, a decentralized peer-to-peer marketplace built on
             the Web3 technology. The following Terms and Conditions (the
@@ -20,22 +22,45 @@ export default function TermsAndCond() {
             the terms and conditions of this Agreement, please do not use the
             Truce platform.
           </p>
-          <ol className="list-decimal list-inside">
-            <li>
-              <a href="information-we-collect">Information We Collect</a>
-              {/* <h2 className="text-xl font-bold mb-4">Information We Collect</h2> */}
-            </li>
-          </ol>
+          <div className="py-8">
+            {termContent2.map((content) => (
+              <div className="py-8" key={content.id}>
+                {" "}
+                <Link
+                  href={""}
+                  id={content.id}
+                  className="scroll-smooth break-all"
+                >
+                  <h3 className="text-base md:text-2xl font-semibold mb-4">
+                    {content.caption}
+                  </h3>
+                </Link>
+                <div>
+                  <ul className="list-none list-inside pl-4 flex flex-col gap-2">
+                    {content.subterms.map((point, index) => (
+                      <li className="flex gap-2" key={point.number}>
+                        <span className="font-semibold">{point.number}</span>
+                        <span>{point.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <aside className="sticky hidden float-right h-auto lg:block xl:w-auto">
+        <aside
+          className="fixed hidden float-right h-auto lg:block xl:w-auto"
+          style={{ position: "fixed", right: "5%" }}
+        >
           <section className="">
             <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
             <ul className="list-decimal list-inside flex flex-col gap-4">
-              {/* {privacyLinks.map((link) => (
+              {termLinks2.map((link: TermLink) => (
                 <li key={link.id}>
                   <a href={link.url}>{link.title}</a>
                 </li>
-              ))} */}
+              ))}
             </ul>
           </section>
         </aside>

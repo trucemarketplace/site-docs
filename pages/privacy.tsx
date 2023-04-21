@@ -44,7 +44,10 @@ export default function PrivacyPolicy() {
             ))}
           </div>
         </div>
-        <aside className="sticky hidden float-right h-auto lg:block xl:w-auto">
+        <aside
+          className="fixed hidden float-right h-auto lg:block xl:w-auto"
+          style={{ position: "fixed", right: "5%" }}
+        >
           <section className="">
             <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
             <ul className="list-decimal list-inside flex flex-col gap-4">
